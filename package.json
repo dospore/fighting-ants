@@ -1,0 +1,14 @@
+{
+  "name": "titan-take-home",
+  "version": "1.0.0",
+  "description": "Titan take home exam",
+  "main": "index.ts",
+  "author": "Dospore",
+  "license": "MIT",
+  "scripts": {
+    "simulate": "ts-node index.ts"
+  },
+  "dependencies": {
+    "lodash": "^4.17.21"
+  }
+}
