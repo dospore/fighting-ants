@@ -9,6 +9,7 @@ pub struct Ants {
 }
 
 impl Ants {
+    /// Create n ants and assign them a random colony
     pub fn new(num_ants: i32, world: &World) -> Ants {
         let mut ant_map = HashMap::new();
 
@@ -24,10 +25,12 @@ impl Ants {
         Ants { ant_map }
     }
 
+    /// Get the current number of alive ants
     pub fn get_num_ants(&self) -> usize {
         self.ant_map.len()
     }
 
+    /// Move the ants to new colonies
     pub fn move_ants(&mut self, world: &World) {
         let ant_positions = self.get_new_ant_positions(world);
         for (ant, new_colony) in ant_positions {
@@ -36,6 +39,7 @@ impl Ants {
         }
     }
 
+    /// Fight the ant wars
     pub fn fight_wars(&mut self, world: &mut World) {
         let wars = self.get_wars();
         for (colony, war) in wars.iter() {
@@ -54,6 +58,7 @@ impl Ants {
         }
     }
 
+    /// Get new ant positions
     fn get_new_ant_positions(&self, world: &World) -> Vec<(i32, String)> {
         self.ant_map
             .iter()
@@ -64,6 +69,7 @@ impl Ants {
             .collect()
     }
 
+    /// Get current potential wars by mapping ants to their respective colonies
     fn get_wars(&self) -> HashMap<String, Vec<i32>> {
         let mut check: HashMap<String, Vec<i32>> = HashMap::new();
         for (ant, colony) in self.ant_map.iter() {
@@ -79,6 +85,7 @@ impl Ants {
         check
     }
 
+    /// Format helper function to list a number of ants
     fn format_ant_list(ant_list: &Vec<i32>) -> String {
         match ant_list.len() {
             0 => String::new(),

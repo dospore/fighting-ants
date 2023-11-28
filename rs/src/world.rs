@@ -4,8 +4,6 @@ use std::io::{self, BufRead, BufReader};
 
 use rand::seq::SliceRandom;
 
-// Wanted to use Rc here and re-use the same heap value for the key and Colony value but couldnt
-// figure it out
 #[derive(Default, Debug)]
 pub struct ColonyState {
     // [north, south, east, west]
@@ -18,6 +16,7 @@ pub struct World {
 }
 
 impl World {
+    /// Loads world state
     pub fn new(file_path: &str) -> io::Result<World> {
         let file = File::open(file_path)?;
         let reader = BufReader::new(file);
@@ -69,18 +68,27 @@ impl World {
         Ok(World { state })
     }
 
+    /// Removes colony from world state
     pub fn remove_colony(&mut self, colony: &String) {
         self.state.remove(colony);
     }
 
+    /// Prints remaining world state to file
     pub fn print_remaining(&self) {
         todo!("Print remaining state of the world to a new file")
     }
 
+    /// Gets colonies currently in world state
     pub fn get_colonies(&self) -> Vec<String> {
+        // not ideal on a very big map but only have to do once on Ant generation
         self.state.keys().cloned().collect()
     }
 
+    /// Gets a random valid direction given a colony
+    /// Validity is defined by if the colony exists in the world state and in ColonyState
+    ///
+    /// # Returns
+    /// None if no colony exists or String if it does
     pub fn get_random_direction(&self, colony: &str) -> Option<&String> {
         if let Some(colony_state) = self.state.get(colony) {
             let valid_directions: Vec<&String> = colony_state
