@@ -6,7 +6,8 @@
   "author": "Dospore",
   "license": "MIT",
   "scripts": {
-    "simulate": "ts-node ./ts/index.ts"
+    "simulate-ts": "ts-node ./ts/index.ts",
+    "simulate-rs": "cargo run --manifest-path=\"./rs/Cargo.toml\""
   },
   "dependencies": {
     "lodash": "^4.17.21"

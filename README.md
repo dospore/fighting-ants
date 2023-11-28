@@ -62,12 +62,19 @@ Remaining output of world gets sent to `./worlds/remainder.txt`
 
 
 ## RS Solution
-// TODO this weekend
+```
+cargo run --manifest-path="./rs/Cargo.toml" <NUM_ANTS> <WORLD_FILE_PATH>
+// eg
+cargo run --manifest-path=\"./rs/Cargo.toml\" 100 ./worlds/hiveum_map_small.txt
+
+// or 
+yarn simulate-rs <NUM_ANTS> <WORLD_FILE_PATH>
+// eg
+yarn simulate-rs 100 ./worlds/hiveum_map_small.txt
+```
 
 
 ## Assumptions
-
-### TS Solution
 Input file
 - north/south/east/west are space seperated
 - no directions exist outside of north/south/east/west
@@ -78,7 +85,3 @@ World Generation
 - More than one ant can start in the same place, they dont kill eachother straight away
 - There are no Ant teams, they fight for themselves, they have no loyalty
 - Isolated colonies are fine
-
-
-### RS Solution
-// TODO
